@@ -16,6 +16,7 @@
   "dependencies": {
     "css-loader": "^0.26.0",
     "file-loader": "^0.9.0",
+    "opentok": "^2.4.0",
     "opentok-camera-filters": "^1.2.0",
     "style-loader": "^0.13.1",
     "url-loader": "^0.5.7",
