@@ -1,0 +1,14 @@
+language: node_js
+
+node_js:
+- stable
+
+script:
+  - ./deploy.sh
+
+env:
+  global:
+  - ENCRYPTION_LABEL: "b197fbac760d"
+  - COMMIT_AUTHOR_EMAIL: "adam@tokbox.com"
+  - OT_API_KEY: "407631"
+  - OT_SESSION_ID: "1_MX40MDc2MzF-fjE0ODEyNTgyMTYwNjN-dnJtTnR2WEVXa0JabTdsMXBOb0xGUW1rfn4"

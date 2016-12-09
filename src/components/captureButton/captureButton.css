@@ -1,0 +1,21 @@
+div#captureBtn {
+  width: 40px;
+  height: 40px;
+  border: 5px solid white;
+  border-radius: 50%;
+  background: none;
+  position: absolute;
+  left: calc(50% - 25px);
+  bottom: 50px;
+  z-index: 9;
+  cursor: pointer;
+}
+
+div.recordingAnimation {
+  width: 70px;
+  height: 70px;
+  position: absolute;
+  left: calc(50% - 35px);
+  bottom: 40px;
+  z-index: 8;
+}

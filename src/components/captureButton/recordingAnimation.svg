@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1000 1000" width="400" height="400">
+  <defs>
+    <mask id="clip">
+      <rect x="50" y="0" width="50" height="100" fill="white"/>
+      <rect x="50" y="0" width="50" height="100" fill="black">
+        <animateTransform attributeName="transform" type="rotate" begin="0s" dur="5s" fill="black" from="0,50,50" to="180,50,50"/>
+      <rect/>
+    </mask>
+  </defs>
+  <circle cx="50" cy="50" r="40" fill="red" stroke="red" stroke-width="10" stroke-opacity="1" fill="red" fill-opacity="0" mask="url(#clip)"/>
+</svg>
