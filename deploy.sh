@@ -10,7 +10,9 @@ TARGET_BRANCH="gh-pages"
 
 function doCompile {
   webpack
-  cp -r * out/
+  cp -r js out/
+  cp -r index.html out/
+  cp -r images out/
 }
 
 # Pull requests and commits to other branches shouldn't try to deploy, just build to verify
