@@ -40,7 +40,9 @@ rm -rf out/**/* || exit 0
 doCompile
 
 # Now let's go have some fun with the cloned repo
+echo "Move to out"
 cd out
+pwd
 git config user.name "Travis CI"
 git config user.email "$COMMIT_AUTHOR_EMAIL"
 
