@@ -48,9 +48,10 @@ git config user.name "Travis CI"
 git config user.email "$COMMIT_AUTHOR_EMAIL"
 git --version
 git add --all .
+git status
 
 # If there are no changes to the compiled out (e.g. this is a README update) then just bail.
-DIFF=`git diff`
+DIFF=`git diff --cached`
 if [ -z "$DIFF" ]; then
     echo "No changes to the output on this push; exiting."
     exit 0
