@@ -46,6 +46,8 @@ pwd
 ls
 git config user.name "Travis CI"
 git config user.email "$COMMIT_AUTHOR_EMAIL"
+git --version
+git add --all .
 
 # If there are no changes to the compiled out (e.g. this is a README update) then just bail.
 DIFF=`git diff`
@@ -56,9 +58,6 @@ fi
 
 # Commit the "changes", i.e. the new version.
 # The delta will show diffs between new and old versions.
-git status
-git --version
-git add --all .
 git status
 pwd
 git commit -m "Deploy to GitHub Pages: ${SHA}"
