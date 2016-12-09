@@ -60,6 +60,7 @@
 	}).then(stream => {
 	  videoElement = document.createElement('video');
 	  videoElement.srcObject = stream;
+	  videoElement.muted = true;
 	  videoElement.play();
 	  videoElement.addEventListener('loadedmetadata', () => {
 	    canvas.width = videoElement.videoWidth;
@@ -72,6 +73,7 @@
 	    }
 	
 	    let filteredVideo = document.createElement('video');
+	    filteredVideo.muted = true;
 	    filteredVideo.srcObject = canvasStream;
 	    document.body.appendChild(filteredVideo);
 	    filteredVideo.play();
