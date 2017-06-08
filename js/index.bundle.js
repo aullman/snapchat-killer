@@ -42,7 +42,7 @@
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	/* global OT config */
 	// A real app would use require('opentok-filters/src/filters.js');
@@ -84,9 +84,9 @@
 	});
 
 
-/***/ },
+/***/ }),
 /* 1 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	const tracking = window.tracking = {};
 	__webpack_require__(2);
@@ -110,6 +110,11 @@
 	
 	function colourFilter(r, g, b, a, videoElement, canvas) {
 	  return filterTask(videoElement, canvas, colourShift.bind(this, r, g, b, a));
+	}
+	
+	// Calculate the distance between 2 points
+	function distance(point1, point2) {
+	  return Math.sqrt(Math.pow(point2[0] - point1[0], 2) + Math.pow(point2[1] - point1[1], 2));
 	}
 	
 	function face(videoElement, canvas, faceFilter) {
@@ -214,8 +219,8 @@
 	        image.src = 'https://aullman.github.io/opentok-camera-filters/images/comedy-glasses.png';
 	      }
 	      if (positions && positions.length > 20) {
-	        const width = (positions[15][0] - positions[19][0]) * 1.1;
-	        const height = (positions[53][1] - positions[20][1]) * 1.15;
+	        const width = distance(positions[15], positions[19]) * 1.1;
+	        const height = distance(positions[53], positions[20]) * 1.15;
 	        const y = positions[20][1] - (0.2 * height);
 	        const x = positions[19][0];
 	        // Calculate the angle to draw by looking at the position of the eyes
@@ -240,9 +245,9 @@
 	};
 
 
-/***/ },
+/***/ }),
 /* 2 */
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	/**
 	 * tracking - A modern approach for Computer Vision on the web.
@@ -2691,9 +2696,9 @@
 	}());
 
 
-/***/ },
+/***/ }),
 /* 3 */
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	module.exports = function filterTask(videoElement, canvas, selectedFilter) {
 	  let tmpCanvas;
@@ -2736,9 +2741,9 @@
 	};
 
 
-/***/ },
+/***/ }),
 /* 4 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(global) {/**
 	 * clmtrackr library (https://www.github.com/auduno/clmtrackr/)
@@ -11336,9 +11341,9 @@
 	
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
-/***/ },
+/***/ }),
 /* 5 */
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	var pModel = {
 	  "scoring": {
@@ -11967,9 +11972,9 @@
 	module.exports = pModel;
 
 
-/***/ },
+/***/ }),
 /* 6 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	__webpack_require__(7);
 	const captureContainer = __webpack_require__(11);
@@ -12012,9 +12017,9 @@
 	};
 
 
-/***/ },
+/***/ }),
 /* 7 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
@@ -12028,8 +12033,8 @@
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../../node_modules/css-loader/index.js!./captureButton.css", function() {
-				var newContent = require("!!./../../../node_modules/css-loader/index.js!./captureButton.css");
+			module.hot.accept("!!../../../node_modules/css-loader/index.js!./captureButton.css", function() {
+				var newContent = require("!!../../../node_modules/css-loader/index.js!./captureButton.css");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -12038,9 +12043,9 @@
 		module.hot.dispose(function() { update(); });
 	}
 
-/***/ },
+/***/ }),
 /* 8 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(9)();
 	// imports
@@ -12052,9 +12057,9 @@
 	// exports
 
 
-/***/ },
+/***/ }),
 /* 9 */
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	/*
 		MIT License http://www.opensource.org/licenses/mit-license.php
@@ -12108,9 +12113,9 @@
 	};
 
 
-/***/ },
+/***/ }),
 /* 10 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	/*
 		MIT License http://www.opensource.org/licenses/mit-license.php
@@ -12125,7 +12130,7 @@
 			};
 		},
 		isOldIE = memoize(function() {
-			return /msie [6-9]\b/.test(window.navigator.userAgent.toLowerCase());
+			return /msie [6-9]\b/.test(self.navigator.userAgent.toLowerCase());
 		}),
 		getHeadElement = memoize(function () {
 			return document.head || document.getElementsByTagName("head")[0];
@@ -12360,9 +12365,9 @@
 	}
 
 
-/***/ },
+/***/ }),
 /* 11 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	__webpack_require__(12);
 	const captureImage = __webpack_require__(14);
@@ -12421,9 +12426,9 @@
 	};
 
 
-/***/ },
+/***/ }),
 /* 12 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
@@ -12437,8 +12442,8 @@
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../../node_modules/css-loader/index.js!./captureContainer.css", function() {
-				var newContent = require("!!./../../../node_modules/css-loader/index.js!./captureContainer.css");
+			module.hot.accept("!!../../../node_modules/css-loader/index.js!./captureContainer.css", function() {
+				var newContent = require("!!../../../node_modules/css-loader/index.js!./captureContainer.css");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -12447,9 +12452,9 @@
 		module.hot.dispose(function() { update(); });
 	}
 
-/***/ },
+/***/ }),
 /* 13 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(9)();
 	// imports
@@ -12461,9 +12466,9 @@
 	// exports
 
 
-/***/ },
+/***/ }),
 /* 14 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	__webpack_require__(15);
 	
@@ -12475,9 +12480,9 @@
 	};
 
 
-/***/ },
+/***/ }),
 /* 15 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
@@ -12491,8 +12496,8 @@
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../../node_modules/css-loader/index.js!./captureImage.css", function() {
-				var newContent = require("!!./../../../node_modules/css-loader/index.js!./captureImage.css");
+			module.hot.accept("!!../../../node_modules/css-loader/index.js!./captureImage.css", function() {
+				var newContent = require("!!../../../node_modules/css-loader/index.js!./captureImage.css");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -12501,9 +12506,9 @@
 		module.hot.dispose(function() { update(); });
 	}
 
-/***/ },
+/***/ }),
 /* 16 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(9)();
 	// imports
@@ -12515,9 +12520,9 @@
 	// exports
 
 
-/***/ },
+/***/ }),
 /* 17 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	/* global MediaRecorder */
 	
@@ -12556,9 +12561,9 @@
 	};
 
 
-/***/ },
+/***/ }),
 /* 18 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
@@ -12572,8 +12577,8 @@
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../../node_modules/css-loader/index.js!./captureVideo.css", function() {
-				var newContent = require("!!./../../../node_modules/css-loader/index.js!./captureVideo.css");
+			module.hot.accept("!!../../../node_modules/css-loader/index.js!./captureVideo.css", function() {
+				var newContent = require("!!../../../node_modules/css-loader/index.js!./captureVideo.css");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -12582,9 +12587,9 @@
 		module.hot.dispose(function() { update(); });
 	}
 
-/***/ },
+/***/ }),
 /* 19 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(9)();
 	// imports
@@ -12596,9 +12601,9 @@
 	// exports
 
 
-/***/ },
+/***/ }),
 /* 20 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	__webpack_require__(21);
 	
@@ -12629,9 +12634,9 @@
 	};
 
 
-/***/ },
+/***/ }),
 /* 21 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
@@ -12645,8 +12650,8 @@
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../../node_modules/css-loader/index.js!./filterPicker.css", function() {
-				var newContent = require("!!./../../../node_modules/css-loader/index.js!./filterPicker.css");
+			module.hot.accept("!!../../../node_modules/css-loader/index.js!./filterPicker.css", function() {
+				var newContent = require("!!../../../node_modules/css-loader/index.js!./filterPicker.css");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -12655,9 +12660,9 @@
 		module.hot.dispose(function() { update(); });
 	}
 
-/***/ },
+/***/ }),
 /* 22 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(9)();
 	// imports
@@ -12669,6 +12674,6 @@
 	// exports
 
 
-/***/ }
+/***/ })
 /******/ ]);
 //# sourceMappingURL=index.bundle.js.map
