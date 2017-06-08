@@ -37,5 +37,4 @@ navigator.mediaDevices.getUserMedia({
 
     captureButton(canvas, canvasStream, document.body);
   });
-  document.body.appendChild(canvas);
 });
