@@ -83,7 +83,6 @@
 	
 	    captureButton(canvas, canvasStream, document.body);
 	  });
-	  document.body.appendChild(canvas);
 	});
 
 
