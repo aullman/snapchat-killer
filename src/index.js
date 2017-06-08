@@ -15,10 +15,13 @@ navigator.mediaDevices.getUserMedia({
   videoElement = document.createElement('video');
   videoElement.srcObject = stream;
   videoElement.muted = true;
-  videoElement.play();
+  setTimeout(() => {
+    videoElement.play();
+  });
   videoElement.addEventListener('loadedmetadata', () => {
     canvas.width = videoElement.videoWidth;
     canvas.height = videoElement.videoHeight;
+    let context = canvas.getContext('2d');
     let canvasStream = canvas.captureStream();
 
     filterPicker(videoElement, canvas, filters, document.body);

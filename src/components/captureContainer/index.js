@@ -40,16 +40,18 @@ module.exports = function captureContainer(canvas, canvasStream, appendTo) {
       capturingVideo.start();
     },
     stopCapturing: () => {
-      if (captured) {
+      if (captured && captured.parentNode === container) {
         container.removeChild(captured);
       }
-      captured = capturingVideo.stop();
-      if (!captured) {
+      capturingVideo.stop().then(c => {
+        captured = c;
+      }).catch(() => {
         // No enough video was captured, just get an image
         captured = captureImage(canvas);
-      }
-      container.appendChild(captured);
-      appendTo.appendChild(container);
+      }).then(() => {
+        container.appendChild(captured);
+        appendTo.appendChild(container);
+      });
     },
   };
 };
