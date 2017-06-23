@@ -29,12 +29,7 @@ navigator.mediaDevices.getUserMedia({
       canvasStream.addTrack(stream.getAudioTracks()[0]);
     }
 
-    let filteredVideo = document.createElement('video');
-    filteredVideo.muted = true;
-    filteredVideo.srcObject = canvasStream;
-    document.body.appendChild(filteredVideo);
-    filteredVideo.play();
-
+    document.body.appendChild(canvas);
     captureButton(canvas, canvasStream, document.body);
   });
 });

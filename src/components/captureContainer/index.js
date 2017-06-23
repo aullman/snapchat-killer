@@ -37,7 +37,7 @@ module.exports = function captureContainer(canvas, canvasStream, appendTo) {
 
   return {
     startCapturing: () => {
-      capturingVideo.start();
+      return capturingVideo.start();
     },
     stopCapturing: () => {
       if (captured && captured.parentNode === container) {
