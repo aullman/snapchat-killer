@@ -1,5 +1,7 @@
 [![Build Status](https://travis-ci.org/aullman/snapchat-killer.svg?branch=master)](https://travis-ci.org/aullman/snapchat-killer)
 
+![Image](https://github.com/aullman/snapchat-killer/raw/master/images/snapchat-killer-on-ios-smaller.gif)
+
 # snapchat-killer
 Proof of concept of building snapchat-like app for a web browser using WebRTC
 
