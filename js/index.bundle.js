@@ -75,12 +75,7 @@
 	      canvasStream.addTrack(stream.getAudioTracks()[0]);
 	    }
 	
-	    let filteredVideo = document.createElement('video');
-	    filteredVideo.muted = true;
-	    filteredVideo.srcObject = canvasStream;
-	    document.body.appendChild(filteredVideo);
-	    filteredVideo.play();
-	
+	    document.body.appendChild(canvas);
 	    captureButton(canvas, canvasStream, document.body);
 	  });
 	});
@@ -12004,12 +11999,13 @@
 	  captureBtn.setAttribute('id', 'captureBtn');
 	  let recordingDiv;
 	  captureBtn.addEventListener('mousedown', () => {
-	    container.startCapturing();
-	    recordingDiv = document.createElement('div');
-	    recordingDiv.innerHTML = recordingAnimation;
-	    recordingDiv.className = 'recordingAnimation';
+	    if (container.startCapturing()) {
+	      recordingDiv = document.createElement('div');
+	      recordingDiv.innerHTML = recordingAnimation;
+	      recordingDiv.className = 'recordingAnimation';
 	
-	    appendTo.appendChild(recordingDiv);
+	      appendTo.appendChild(recordingDiv);
+	    }
 	  });
 	  captureBtn.addEventListener('mouseup', () => {
 	    container.stopCapturing();
@@ -12410,7 +12406,7 @@
 	
 	  return {
 	    startCapturing: () => {
-	      capturingVideo.start();
+	      return capturingVideo.start();
 	    },
 	    stopCapturing: () => {
 	      if (captured && captured.parentNode === container) {
@@ -12539,6 +12535,10 @@
 	
 	  return {
 	    start: () => {
+	      if (typeof MediaRecorder === 'undefined') {
+	        // We can't capture video we don't suppor the MediaRecorder API
+	        return false;
+	      }
 	      recordedBlobs = [];
 	      const options = { mimeType: 'video/webm;codecs=vp8' };
 	      mediaRecorder = new MediaRecorder(canvasStream, options);
@@ -12562,21 +12562,26 @@
 	            recordedVideo.src = window.URL.createObjectURL(superBuffer);
 	            capturePromise.resolve(recordedVideo);
 	          } else {
-	            capturePromise.reject();
+	            capturePromise.reject('video not long enough');
 	          }
 	          capturePromise = null;
 	        }
 	      });
-	      mediaRecorder.start(10); // collect 10ms of data
+	      mediaRecorder.start(10); // collect 10ms of data at a time
 	    },
 	    stop: () => {
-	      mediaRecorder.stop();
-	      return new Promise((resolve, reject) => {
-	        capturePromise = {
-	          resolve,
-	          reject
-	        };
-	      });
+	      if (mediaRecorder) {
+	        mediaRecorder.stop();
+	        return new Promise((resolve, reject) => {
+	          capturePromise = {
+	            resolve,
+	            reject
+	          };
+	        });
+	      } else {
+	        // We don't support MediaRecorder API just take a snapshot
+	        return Promise.reject('We do not support the MediaRecorder API');
+	      }
 	    },
 	  };
 	};
