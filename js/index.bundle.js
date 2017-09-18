@@ -61,6 +61,7 @@
 	  videoElement = document.createElement('video');
 	  videoElement.srcObject = stream;
 	  videoElement.muted = true;
+	  videoElement.setAttribute('playsinline', '');
 	  setTimeout(() => {
 	    videoElement.play();
 	  });
