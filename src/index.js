@@ -22,7 +22,7 @@ navigator.mediaDevices.getUserMedia({
   videoElement.addEventListener('loadedmetadata', () => {
     canvas.width = videoElement.videoWidth;
     canvas.height = videoElement.videoHeight;
-    let context = canvas.getContext('2d');
+    let context = canvas.getContext('2d', {alpha: false});
     let canvasStream = canvas.captureStream();
 
     filterPicker(videoElement, canvas, filters, document.body);
